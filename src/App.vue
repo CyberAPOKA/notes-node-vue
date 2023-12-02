@@ -134,8 +134,8 @@ const submitForm = async () => {
         });
       }
       // reseta o form, fecha a modal e carrega as novas anotações respectivamentes.
-      resetForm();
-      closeCreateNoteModal();
+      // resetForm();
+      // closeCreateNoteModal();
       loadNotes();
     } catch (error) {
       toast.error("Erro ao salvar anotação.", {
@@ -246,18 +246,12 @@ const deleteNoteFromIndexDB = async (id) => {
   await db.notes.delete(id);
 };
 
-// deleta uma anotação em específica do banco de dados.
-// const deleteNoteFromServer = async (id) => {
-//   await axios.delete(`http://127.0.0.1:3000/deletenote/${id}`);
-// };
-
 //chama as funções de deletar a anotação
 const deleteNote = async () => {
   try {
 
     if (noteId.value != null) {
       await deleteNoteFromIndexDB(noteId.value);
-      await deleteNoteFromServer(noteId.value);
     }
 
     loadNotes();
